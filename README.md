@@ -1,10 +1,15 @@
 #  pystopwords
 
 ## 简介
-中文停用词大全，支持Python接口。
+中文停用词大全，支持Python接口, 可选择百度，哈工大，中科院等公开停用词典。
 
 目前只专注于中文，未来考虑加入多语言支持。
 
+## 安装
+
+```shell
+pip install pystopwords
+```
 
 ## 使用方法
 
@@ -31,6 +36,7 @@ stopwords函数返回一个停用词set，有两个参数：
 
 ```python
 from pystopwords import stopwords
+import jieba
 
 # 默认的参数为：
 # all_stopwords = stopwords(langs='zh', source='all')
@@ -39,7 +45,14 @@ all_stopwords = stopwords()
 # 可以选择不同的来源
 baidu_stopwords = stopwords(source='baidu')
 hit_stopwords = stopwords(source='hit')
+
+word_list = jieba.lcut('我想找一个简单好用的停用词典')
+word_list_drop_stopwords = [word for word in word_list if word not in all_stopwords]
+print(word_list_drop_stopwords)
+
+# Stdout: ['想', '找', '简单', '好用', '停用', '词典']
 ```
+
 
 ## 来源说明
 
